@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Intelligent System</string>
+    <string name="scan">Сканировать</string>
 </resources>
