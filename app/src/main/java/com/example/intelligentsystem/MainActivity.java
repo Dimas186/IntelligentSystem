@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showResult(SparseArray<TextBlock> items) {
         if (items.size() > 0) {
-            String ch = items.valueAt(0).getValue();
+            String ch = items.valueAt(0).getValue().toUpperCase();
             if (ch.equals("D") || ch.equals("F") || items.valueAt(0).getValue().equals("V")) {
                 textView.setText(ch);
             }
