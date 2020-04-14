@@ -72,19 +72,28 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Frame frame = new Frame.Builder().setBitmap(bitmap).build();
                     SparseArray<TextBlock> items = recognizer.detect(frame);
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < items.size(); i++) {
-                        TextBlock myitem = items.valueAt(i);
-                        sb.append(myitem.getValue());
-                        sb.append("\n");
-                    }
-                    textView.setText(sb.toString());
+                    showResult(items);
                 }
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
                 Toast.makeText(this, "" + error, Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    private void showResult(SparseArray<TextBlock> items) {
+        if (items.size() > 0) {
+            String ch = items.valueAt(0).getValue();
+            if (ch.equals("D") || ch.equals("F") || items.valueAt(0).getValue().equals("V")) {
+                textView.setText(ch);
+            }
+            else {
+                textView.setText(getString(R.string.not_recognized));
+            }
+        }
+        else {
+            textView.setText(getString(R.string.not_recognized));
         }
     }
 }
